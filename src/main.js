@@ -19,7 +19,8 @@ app.config.globalProperties.$filters = {
     return boolean ? 'In stock' : 'Out of stock';
   },
   toyCategories(arr) {
-    return arr.splice(',').join(' | ');
+    const newArr = arr.slice(',').join(' | ');
+    return newArr;
   },
 };
 

@@ -1,5 +1,6 @@
 <template>
   <h1>{{ msg }}</h1>
+  <router-link to="/toy/edit">Add new toy</router-link>
   <filter-by></filter-by>
   <toy-list @removeToy="removeToy" :toys="toys"></toy-list>
 </template>

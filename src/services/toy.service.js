@@ -9,6 +9,7 @@ export const toyService = {
   getEmptyToy,
   removeToy,
   getToy,
+  labels,
   // toyLabels,
 };
 
@@ -44,23 +45,20 @@ function _createToy(time, Stock, reviews) {
   };
   return toy;
 }
-
+function labels() {
+  return ['On wheels', 'Box game', 'Art', 'Baby', 'Doll', 'Puzzle', 'Outdoor'];
+}
 function getEmptyToy() {
-  const toy = {
+  return {
     _id: utilService.makeId(),
-    name: utilService.randomToyName(),
-    price: utilService.makePrice(),
-    labels: utilService.labels(),
-    createdAt: Date.now(),
-    inStock: true,
+    name: '',
+    price: '',
+    labels: [],
+    createdAt: +Date.now(),
+    inStock: false,
     reviews: utilService.reviews(),
   };
-
-  return storageService.post(STORAGE_KEY, toy);
 }
-// function getEmptyToy(toy) {
-//   return storageService.post(STORAGE_KEY, toy);
-// }
 
 function getToy(id) {
   return storageService.get(STORAGE_KEY, id);
