@@ -1,11 +1,13 @@
 <template>
   <div class="preview">
-    <span>{{ toy.name }}</span>
-    <span>{{ toy.price }}</span>
-    <span>{{ toy.labels.slice(',').join(',') }}</span>
-    <span>{{ $filters.createdAt(toy.createdAt) }}</span>
-    <span>Toy available {{ toy.inStock ? 'Yes' : 'No' }}</span>
+    <div>{{ toy.name }}</div>
+    <div>{{ toy.price }}</div>
+    <div>{{ $filters.toyCategories(toy.labels) }}</div>
+    <div>{{ $filters.createdAt(toy.createdAt) }}</div>
+    <div>Toy available {{ $filters.inStock(toy.inStock) }}</div>
+    <div>Toy reviews: {{ $filters.toyCategories(toy.reviews) }}</div>
     <router-link :to="'/toy/details/' + toy._id">Details</router-link>
+    <router-link :to="'/toy/edit/' + toy._id">Edit</router-link>
   </div>
 </template>
 

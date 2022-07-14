@@ -8,7 +8,7 @@ const store = createStore({
       toys: null,
       toy: null,
       filterBy: {},
-      labels: toyService.toyLabels(),
+      labels: null,
     };
   },
   mutations: {
@@ -32,6 +32,11 @@ const store = createStore({
       console.log('from mus', toy);
       state.toy = toy;
       console.log('state toy', state.toy);
+    },
+    createToy(state, { toy }) {
+      console.log('mutation toy', toy);
+      state.toy = toy;
+      console.log('state create toy', state.toy);
     },
   },
   actions: {
@@ -60,6 +65,13 @@ const store = createStore({
         commit({ type: 'getToy', toy });
       });
     },
+    createToy({ commit }) {
+      console.log('from toy creation');
+      toyService.getEmptyToy().then(toy => {
+        console.log('new toy', toy);
+        commit({ type: 'createToy', toy });
+      });
+    },
   },
 
   getters: {
@@ -79,9 +91,8 @@ const store = createStore({
       }
       if (label) {
         console.log('the lable', label);
-        if (label === 'show') return toys;
         const label_ = toys.filter(toy => toy.labels.includes(label));
-        toys = label_;
+        toys = label === 'show' ? toys : label_;
       }
       if (sorting) {
         if (decr) {

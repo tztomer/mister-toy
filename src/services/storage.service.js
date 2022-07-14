@@ -4,6 +4,8 @@ export const storageService = {
   query,
   remove,
   get,
+  put,
+  post,
 };
 
 function save(key, value) {
@@ -18,8 +20,24 @@ function query(entityType) {
   var entities = JSON.parse(localStorage.getItem(entityType)) || [];
   return Promise.resolve(entities);
 }
+function post(entityType, newEntity) {
+  return query(entityType).then(entities => {
+    entities.push(newEntity);
+    _save(entityType, entities);
+    return newEntity;
+  });
+}
 function get(entityType, entityId) {
   return query(entityType).then(entities => entities.find(entity => entity._id === entityId));
+}
+function put(entityType, updatedEntity) {
+  return query(entityType).then(entities => {
+    const idx = entities.findIndex(entity => entity._id === updatedEntity._id);
+    console.log(idx);
+    entities.splice(idx, 1, updatedEntity);
+    _save(entityType, entities);
+    return updatedEntity;
+  });
 }
 function remove(entityType, entityId) {
   return query(entityType).then(entities => {

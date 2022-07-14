@@ -3,6 +3,7 @@ export const utilService = {
   randomToyName,
   makePrice,
   labels,
+  reviews,
 };
 
 function makeId(length = 5) {
@@ -27,6 +28,20 @@ function labels() {
   const labels = ['On wheels', 'Box game', 'Art', 'Baby', 'Doll', 'Puzzle', 'Outdoor'];
   const label = [_rept(labels), _rept(labels), _rept(labels)];
   return label;
+}
+
+function reviews() {
+  const reviews = [
+    'Best Toy ever',
+    'Dont buy this',
+    'Stay for along time',
+    'Not form me!!',
+    'I like to see a better version',
+    'Nice one bought it for my child',
+    'No return policy',
+  ];
+  const review = [_rept(reviews), _rept(reviews), _rept(reviews)];
+  return review;
 }
 
 function makePrice(length = 3) {

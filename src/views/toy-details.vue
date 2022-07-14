@@ -6,7 +6,7 @@
       <p>Toy name: {{ getToy.name }}</p>
       <p>Toy price: {{ getToy.price }}</p>
       <p>Toy price: {{ $filters.inStock(getToy.inStock) }}</p>
-      <p>Toy catagories: {{ getToy.labels }}</p>
+      <p>Toy catagories: {{ $filters.toyCategories(getToy.labels) }}</p>
     </div>
   </section>
 </template>

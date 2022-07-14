@@ -18,6 +18,9 @@ app.config.globalProperties.$filters = {
   inStock(boolean) {
     return boolean ? 'In stock' : 'Out of stock';
   },
+  toyCategories(arr) {
+    return arr.splice(',').join(' | ');
+  },
 };
 
 app.use(router);
