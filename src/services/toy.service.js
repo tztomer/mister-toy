@@ -10,6 +10,8 @@ export const toyService = {
   removeToy,
   getToy,
   labels,
+  postNewToy,
+  updateToy,
   // toyLabels,
 };
 
@@ -48,9 +50,17 @@ function _createToy(time, Stock, reviews) {
 function labels() {
   return ['On wheels', 'Box game', 'Art', 'Baby', 'Doll', 'Puzzle', 'Outdoor'];
 }
+
+function postNewToy(newToy) {
+  return storageService.post(STORAGE_KEY, newToy);
+}
+function updateToy(updatedToy) {
+  return storageService.put(STORAGE_KEY, updatedToy);
+}
+
 function getEmptyToy() {
   return {
-    _id: utilService.makeId(),
+    _id: null,
     name: '',
     price: '',
     labels: [],

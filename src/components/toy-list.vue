@@ -1,5 +1,5 @@
 <template>
-  <ul class="toy-list">
+  <ul v-if="toys" class="toy-list">
     <li v-for="toy in toys" :key="toy._id">
       <button @click.native="$emit('removeToy', toy._id)">X</button>
       <toy-preview :toy="toy" />

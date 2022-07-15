@@ -1,7 +1,7 @@
 <template>
   <div v-if="toy">
     <router-link to="/">Toy List</router-link>
-    <form>
+    <form @submit.prevent="saveToy">
       <input type="text" v-model="toy.name" />
       <input type="number" v-model="toy.price" />
       <select v-model="toy.labels" multiple placeholder="Select labels">
@@ -35,7 +35,8 @@
     },
     methods: {
       saveToy() {
-        console.log('values', $event);
+        console.log(this.toy);
+        this.$store.dispatch(this.toy._id ? { type: 'updateToy', toy: this.toy } : { type: 'addNewToy', toy: this.toy });
       },
     },
     created() {
