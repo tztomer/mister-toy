@@ -9,7 +9,7 @@ const store = createStore({
       toys: null,
       toy: null,
       filterBy: {},
-      labels: null,
+      labels: toyService.labels(),
     };
   },
   mutations: {
@@ -110,7 +110,7 @@ const store = createStore({
       if (label) {
         console.log('the lable', label);
         const label_ = toys.filter(toy => toy.labels.includes(label));
-        toys = label === 'show' ? toys : label_;
+        toys = label_;
       }
       if (sorting) {
         if (decr) {
@@ -133,6 +133,7 @@ const store = createStore({
       return toys;
     },
     toyLabels(state) {
+      console.log(state.labels);
       return state.labels;
     },
     getToy(state) {
